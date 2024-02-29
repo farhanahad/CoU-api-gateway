@@ -1,9 +1,10 @@
+
 import { Request } from 'express';
 import { IGenericResponse } from '../../../interfaces/common';
-import { CoreService } from '../../../shared/axios';
+import { CoreService as CoreHttpService } from '../../../shared/axios';
 
 const getAllFromDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await CoreService.get('/student-enrolled-courses', {
+  const response: IGenericResponse = await CoreHttpService.get('/student-enrolled-courses', {
     params: req.query,
     headers: {
       Authorization: req.headers.authorization
@@ -14,7 +15,7 @@ const getAllFromDB = async (req: Request): Promise<IGenericResponse> => {
 
 const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await CoreService.get(`/student-enrolled-courses/${id}`, {
+  const response: IGenericResponse = await CoreHttpService.get(`/student-enrolled-courses/${id}`, {
     headers: {
       Authorization: req.headers.authorization
     }
@@ -23,7 +24,7 @@ const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
 };
 
 const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await CoreService.post(
+  const response: IGenericResponse = await CoreHttpService.post(
     `/student-enrolled-courses`,
     req.body,
     {
@@ -37,7 +38,7 @@ const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
 
 const updateOneInDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await CoreService.patch(
+  const response: IGenericResponse = await CoreHttpService.patch(
     `/student-enrolled-courses/${id}`,
     req.body,
     {
@@ -51,7 +52,7 @@ const updateOneInDB = async (req: Request): Promise<IGenericResponse> => {
 
 const deleteByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await CoreService.delete(
+  const response: IGenericResponse = await CoreHttpService.delete(
     `/student-enrolled-courses/${id}`,
     {
       headers: {

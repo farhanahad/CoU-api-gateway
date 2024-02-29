@@ -4,7 +4,7 @@ import { ZodError } from 'zod';
 import config from '../../config';
 import ApiError from '../../errors/apiError';
 import handleZodError from '../../errors/handleZodError';
-import logger from '../../shared/logger';
+// import logger from '../../shared/logger';
 
 const globalExceptionHandler: ErrorRequestHandler = (
   error,
@@ -40,7 +40,8 @@ const globalExceptionHandler: ErrorRequestHandler = (
           }
         ]
       : [];
-  } else if (error instanceof Error) {
+  // } else if (error instanceof Error) {
+  } else {
     message = error?.message;
     errorMessages = error?.message
       ? [
